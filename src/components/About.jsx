@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { styles } from "../styles";
 import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -28,9 +29,22 @@ const ServiceCard = ({ index, title, icon }) => {
 };
 
 const About = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      const test = textVariant();
+      console.log(test);
+      controls.start("show");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} animate={controls} ref={ref}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
