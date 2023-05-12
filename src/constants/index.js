@@ -108,17 +108,17 @@ const technologies = [
     name: "figma",
     icon: figma,
   },
-  {
-    name: "docker",
-    icon: docker,
-  },
+  // {
+  //   name: "docker",
+  //   icon: docker,
+  // },
 ];
 
 const experiences = [
   {
     title: "FrontEnd Developer",
     company_name: "Voyance",
-    icon: starbucks,
+    icon: reactjs,
     iconBg: "#383E56",
     date: "June 2022 - Present",
     points: [
