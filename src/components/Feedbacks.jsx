@@ -54,16 +54,15 @@ const Feedbacks = () => {
           <h2 className={styles.sectionHeadText}>My Resume</h2>
         </motion.div>
       </div>
-      <button
-        className="bg-tertiary  outline-none  h-fit p-5  text-white font-bold shadow-md shadow-primary rounded-xl"
-        type="button"
-        onClick={() =>
-          (window.location.href =
-            "https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X/view?usp=drive_link")
+      <a
+        className="bg-tertiary  outline-none  h-fit p-5  text-white font-bold shadow-md shadow-primary rounded-xl cursor-pointer"
+        href="https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X/view?usp=drive_link"
+        download={
+          "https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X"
         }
       >
         Download My Resume
-      </button>
+      </a>
       <div className={`${styles.paddingX} -mt-20 pb-14`}>
         {/* {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
