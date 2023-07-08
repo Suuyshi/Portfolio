@@ -4,9 +4,8 @@ import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
 import { SectionWrapper } from "../Hoc";
-import { useNavigate } from "react-router-dom";
 
-const FeedbackCard = ({
+const WorkCard = ({
   index,
   testimonial,
   name,
@@ -43,34 +42,22 @@ const FeedbackCard = ({
   );
 };
 
-const Feedbacks = () => {
-  const Navigate = useNavigate();
-
+const WorksUC = () => {
   return (
     <div className="mt-12 bg-black-100 rounded-[20px] flex justify-between items-center">
       <div className={`${styles.padding} bg-tertiary rounded-2xl`}>
         <motion.div variants={textVariant()}>
-          {/* <p className={styles.sectionSubText}> </p> */}
-          <h2 className={styles.sectionHeadText}>My Resume</h2>
+          <motion.div variants={textVariant()}>
+            <p className={styles.sectionSubText}>My Projects</p>
+            <h2 className={styles.sectionHeadText}>ShowCase.</h2>
+          </motion.div>
         </motion.div>
       </div>
-      <button
-        className="bg-tertiary  outline-none  h-fit p-5  text-white font-bold shadow-md shadow-primary rounded-xl"
-        type="button"
-        onClick={() =>
-          (window.location.href =
-            "https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X/view?usp=drive_link")
-        }
-      >
-        Download My Resume
-      </button>
-      <div className={`${styles.paddingX} -mt-20 pb-14`}>
-        {/* {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
-        ))} */}
+      <div className={`${styles.paddingX}`}>
+        <p className={styles.sectionSubText}>Will be Added Soon.</p>
       </div>
     </div>
   );
 };
 
-export default SectionWrapper(Feedbacks, "resume");
+export default SectionWrapper(WorksUC, "");

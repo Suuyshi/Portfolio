@@ -10,6 +10,7 @@ import {
   Works,
   StarsCanvas,
 } from "./components";
+import WorksUC from "./components/WorksUC";
 
 const App = () => {
   return (
@@ -19,15 +20,19 @@ const App = () => {
           <Navbar />
           <Hero />
         </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
         <div className="relative z-0">
+          <About />
+          <Experience />
+          <Tech />
+          {/* <Works /> */}
+          <WorksUC />
+          <Feedbacks />
           <Contact />
           <StarsCanvas />
         </div>
+        {/* <About /> */}
+
+        <div className="relative z-0"></div>
       </div>
     </BrowserRouter>
   );
