@@ -60,6 +60,8 @@ const Feedbacks = () => {
         download={
           "https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X"
         }
+        target="_blank"
+        rel="noreferrer"
       >
         Download My Resume
       </a>
