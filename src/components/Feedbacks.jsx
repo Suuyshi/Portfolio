@@ -56,10 +56,7 @@ const Feedbacks = () => {
       </div>
       <a
         className="bg-tertiary  outline-none  h-fit p-5  text-white font-bold shadow-md shadow-primary rounded-xl cursor-pointer"
-        href="https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X/view?usp=drive_link"
-        download={
-          "https://drive.google.com/file/d/1MVwb7KSvx5rpCLzB6WGg5o2jYX3nkO7X"
-        }
+        href="https://drive.google.com/file/d/1S__TNbcQXnW18oCZvaDXzgGJfes2tUPV/view?usp=drive_link"
         target="_blank"
         rel="noreferrer"
       >
