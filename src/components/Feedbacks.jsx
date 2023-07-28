@@ -55,12 +55,12 @@ const Feedbacks = () => {
         </motion.div>
       </div>
       <a
-        className="bg-tertiary  outline-none  h-fit p-5  text-white font-bold shadow-md shadow-primary rounded-xl cursor-pointer"
+        className="bg-tertiary  outline-none  h-fit p-3  text-white font-bold shadow-md shadow-primary rounded-xl cursor-pointer xs:text-[5px] leading-5 ms-5"
         href="https://drive.google.com/file/d/1S__TNbcQXnW18oCZvaDXzgGJfes2tUPV/view"
         target="_blank"
         rel="noreferrer"
       >
-        Download My Resume
+        Download
       </a>
       <div className={`${styles.paddingX} -mt-20 pb-14`}>
         {/* {testimonials.map((testimonial, index) => (
