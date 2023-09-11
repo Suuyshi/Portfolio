@@ -28,6 +28,11 @@ const Ball = (props) => {
           rotation={[2 * Math.PI, 0, 6.25]}
           map={decal}
         />
+        <Decal
+          position={[1, 0, 0]}
+          rotation={[Math.PI * 4, 2, 0]}
+          map={decal}
+        />
       </mesh>
     </Float>
   );
