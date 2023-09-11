@@ -4,6 +4,7 @@ import { SectionWrapper } from "../Hoc";
 import { technologies } from "../constants";
 
 const Tech = () => {
+  console.log("");
   return (
     <div className="flex flex-row flex-wrap gap-10 justify-center">
       {technologies.map((technology) => (
