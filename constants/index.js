@@ -1,34 +1,36 @@
-const logo = "/logo.svg";
-const backend = "/backend.png";
-const creator = "/creator.png";
-const mobile = "/mobile.png";
-const web = "/web.png";
-const github = "/github.png";
-const menu = "/menu.svg";
-const close = "/close.svg";
+import { basePath } from "@/lib/config";
 
-const html = "/tech/html.png";
-const css = "/tech/css.png";
-const javascript = "/tech/javascript.png";
-const typescript = "/tech/typescript.png";
-const reactjs = "/tech/reactjs.png";
-const redux = "/tech/redux.png";
-const tailwind = "/tech/tailwind.png";
-const nodejs = "/tech/nodejs.png";
-const mongodb = "/tech/mongodb.png";
-const git = "/tech/git.png";
-const figma = "/tech/figma.png";
-const docker = "/tech/docker.png";
-const threejs = "/tech/threejs.svg";
+const logo = `${basePath}/logo.svg`;
+const backend = `${basePath}/backend.png`;
+const creator = `${basePath}/creator.png`;
+const mobile = `${basePath}/mobile.png`;
+const web = `${basePath}/web.png`;
+const github = `${basePath}/github.png`;
+const menu = `${basePath}/menu.svg`;
+const close = `${basePath}/close.svg`;
 
-const meta = "/company/meta.png";
-const shopify = "/company/shopify.png";
-const starbucks = "/company/starbucks.png";
-const tesla = "/company/tesla.png";
+const html = `${basePath}/tech/html.png`;
+const css = `${basePath}/tech/css.png`;
+const javascript = `${basePath}/tech/javascript.png`;
+const typescript = `${basePath}/tech/typescript.png`;
+const reactjs = `${basePath}/tech/reactjs.png`;
+const redux = `${basePath}/tech/redux.png`;
+const tailwind = `${basePath}/tech/tailwind.png`;
+const nodejs = `${basePath}/tech/nodejs.png`;
+const mongodb = `${basePath}/tech/mongodb.png`;
+const git = `${basePath}/tech/git.png`;
+const figma = `${basePath}/tech/figma.png`;
+const docker = `${basePath}/tech/docker.png`;
+const threejs = `${basePath}/tech/threejs.svg`;
 
-const carrent = "/carrent.png";
-const jobit = "/jobit.png";
-const tripguide = "/tripguide.png";
+const meta = `${basePath}/company/meta.png`;
+const shopify = `${basePath}/company/shopify.png`;
+const starbucks = `${basePath}/company/starbucks.png`;
+const tesla = `${basePath}/company/tesla.png`;
+
+const carrent = `${basePath}/carrent.png`;
+const jobit = `${basePath}/jobit.png`;
+const tripguide = `${basePath}/tripguide.png`;
 
 export const navLinks = [
   { id: "about", title: "About" },
@@ -64,7 +66,7 @@ const experiences = [
     company_name: "Voyance",
     icon: reactjs,
     iconBg: "#383E56",
-    date: "June 2022 - Present",
+    date: "June 2022 - August 2024",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
@@ -153,4 +155,12 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export {
+  services,
+  technologies,
+  experiences,
+  testimonials,
+  projects,
+  menu,
+  close,
+};

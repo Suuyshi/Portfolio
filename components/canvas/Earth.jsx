@@ -5,8 +5,10 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
+import { basePath } from "@/lib/config";
+
 const Earth = ({ isMobile }) => {
-  const earth = useGLTF("/planet/scene.gltf");
+  const earth = useGLTF(`${basePath}/planet/scene.gltf`);
 
   return (
     <mesh>

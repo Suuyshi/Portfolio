@@ -1,10 +1,12 @@
 import "./globals.css";
+import { basePath } from "@/lib/config";
 
 export const metadata = {
   title: "Sarah El Sherbiny | Portfolio",
   description: "Portfolio of Sarah El Sherbiny - Frontend Developer",
+  metadataBase: new URL("https://suuyshi.github.io"),
   icons: {
-    icon: "/sarahlogo.svg",
+    icon: `${basePath}/sarahlogo.svg`,
   },
 };
 

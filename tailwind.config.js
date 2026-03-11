@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const basePath = process.env.NODE_ENV === "production" ? "/Portfolio" : "";
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,7 +23,7 @@ module.exports = {
         xs: "450px",
       },
       backgroundImage: {
-        "hero-pattern": "url('/herobg3.jpg')",
+        "hero-pattern": `url('${basePath}/herobg3.jpg')`,
       },
     },
   },

@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { styles } from "./styles";
-import { navLinks } from "@/constants";
+import { navLinks, menu, close } from "@/constants";
+import { basePath } from "@/lib/config";
 
 const Navbar = () => {
   const [active, setActive] = useState();
@@ -24,7 +25,7 @@ const Navbar = () => {
           }}
         >
           <Image
-            src="/sarahlogo.svg"
+            src={`${basePath}/sarahlogo.svg`}
             alt="logo"
             width={100}
             height={100}
@@ -50,7 +51,7 @@ const Navbar = () => {
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <Image
-            src={toggle ? "/close.svg" : "/menu.svg"}
+            src={toggle ? close : menu}
             alt="menu"
             width={28}
             height={28}
