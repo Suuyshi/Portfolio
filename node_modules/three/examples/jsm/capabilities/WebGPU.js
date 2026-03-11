@@ -1,6 +1,17 @@
-if ( window.GPUShaderStage === undefined ) {
+if ( self.GPUShaderStage === undefined ) {
 
-	window.GPUShaderStage = { VERTEX: 1, FRAGMENT: 2, COMPUTE: 4 };
+	self.GPUShaderStage = { VERTEX: 1, FRAGMENT: 2, COMPUTE: 4 };
+
+}
+
+// statics
+
+let isAvailable = navigator.gpu !== undefined;
+
+
+if ( typeof window !== 'undefined' && isAvailable ) {
+
+	isAvailable = await navigator.gpu.requestAdapter();
 
 }
 
@@ -8,7 +19,13 @@ class WebGPU {
 
 	static isAvailable() {
 
-		return ( navigator.gpu !== undefined );
+		return Boolean( isAvailable );
+
+	}
+
+	static getStaticAdapter() {
+
+		return isAvailable;
 
 	}
 
@@ -35,5 +52,6 @@ class WebGPU {
 	}
 
 }
+
 
 export default WebGPU;

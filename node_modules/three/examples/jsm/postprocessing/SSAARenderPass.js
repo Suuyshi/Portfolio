@@ -1,9 +1,7 @@
 import {
-	CustomBlending,
-	OneFactor,
-	AddEquation,
-	SrcAlphaFactor,
+	AdditiveBlending,
 	Color,
+	HalfFloatType,
 	ShaderMaterial,
 	UniformsUtils,
 	WebGLRenderTarget
@@ -33,6 +31,8 @@ class SSAARenderPass extends Pass {
 		this.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
 		this.unbiased = true;
 
+		this.stencilBuffer = false;
+
 		// as we need to clear the buffer in this pass, clearColor must be set to something, defaults to black.
 		this.clearColor = ( clearColor !== undefined ) ? clearColor : 0x000000;
 		this.clearAlpha = ( clearAlpha !== undefined ) ? clearAlpha : 0;
@@ -48,14 +48,8 @@ class SSAARenderPass extends Pass {
 			transparent: true,
 			depthTest: false,
 			depthWrite: false,
-
-			// do not use AdditiveBlending because it mixes the alpha channel instead of adding
-			blending: CustomBlending,
-			blendEquation: AddEquation,
-			blendDst: OneFactor,
-			blendDstAlpha: OneFactor,
-			blendSrc: SrcAlphaFactor,
-			blendSrcAlpha: OneFactor
+			premultipliedAlpha: true,
+			blending: AdditiveBlending
 		} );
 
 		this.fsQuad = new FullScreenQuad( this.copyMaterial );
@@ -87,7 +81,7 @@ class SSAARenderPass extends Pass {
 
 		if ( ! this.sampleRenderTarget ) {
 
-			this.sampleRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height );
+			this.sampleRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, { type: HalfFloatType, stencilBuffer: this.stencilBuffer } );
 			this.sampleRenderTarget.texture.name = 'SSAARenderPass.sample';
 
 		}

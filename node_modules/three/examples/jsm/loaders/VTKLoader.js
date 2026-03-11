@@ -1,6 +1,7 @@
 import {
 	BufferAttribute,
 	BufferGeometry,
+	Color,
 	FileLoader,
 	Float32BufferAttribute,
 	Loader
@@ -107,6 +108,8 @@ class VTKLoader extends Loader {
 			let inColorSection = false;
 			let inNormalsSection = false;
 
+			const color = new Color();
+
 			const lines = data.split( '\n' );
 
 			for ( const i in lines ) {
@@ -207,7 +210,10 @@ class VTKLoader extends Loader {
 							const r = parseFloat( result[ 1 ] );
 							const g = parseFloat( result[ 2 ] );
 							const b = parseFloat( result[ 3 ] );
-							colors.push( r, g, b );
+
+							color.set( r, g, b ).convertSRGBToLinear();
+
+							colors.push( color.r, color.g, color.b );
 
 						}
 
@@ -319,9 +325,11 @@ class VTKLoader extends Loader {
 						const g = colors[ 3 * i + 1 ];
 						const b = colors[ 3 * i + 2 ];
 
-						newColors.push( r, g, b );
-						newColors.push( r, g, b );
-						newColors.push( r, g, b );
+						color.set( r, g, b ).convertSRGBToLinear();
+
+						newColors.push( color.r, color.g, color.b );
+						newColors.push( color.r, color.g, color.b );
+						newColors.push( color.r, color.g, color.b );
 
 					}
 
@@ -438,7 +446,6 @@ class VTKLoader extends Loader {
 								indices[ indicesIndex ++ ] = strip[ j + 1 ];
 
 							} else {
-
 
 								indices[ indicesIndex ++ ] = strip[ j ];
 								indices[ indicesIndex ++ ] = strip[ j + 1 ];
@@ -612,7 +619,17 @@ class VTKLoader extends Loader {
 
 							const tmp = xmlToJson( item );
 
-							if ( tmp !== '' ) obj[ nodeName ] = tmp;
+							if ( tmp !== '' ) {
+
+								if ( Array.isArray( tmp[ '#text' ] ) ) {
+
+									tmp[ '#text' ] = tmp[ '#text' ][ 0 ];
+
+								}
+
+								obj[ nodeName ] = tmp;
+
+							}
 
 						} else {
 
@@ -625,7 +642,17 @@ class VTKLoader extends Loader {
 
 							const tmp = xmlToJson( item );
 
-							if ( tmp !== '' ) obj[ nodeName ].push( tmp );
+							if ( tmp !== '' ) {
+
+								if ( Array.isArray( tmp[ '#text' ] ) ) {
+
+									tmp[ '#text' ] = tmp[ '#text' ][ 0 ];
+
+								}
+
+								obj[ nodeName ].push( tmp );
+
+							}
 
 						}
 
@@ -885,6 +912,60 @@ class VTKLoader extends Loader {
 			let points = [];
 			let normals = [];
 			let indices = [];
+
+			if ( json.AppendedData ) {
+
+				const appendedData = json.AppendedData[ '#text' ].slice( 1 );
+				const piece = json.PolyData.Piece;
+
+				const sections = [ 'PointData', 'CellData', 'Points', 'Verts', 'Lines', 'Strips', 'Polys' ];
+				let sectionIndex = 0;
+
+				const offsets = sections.map( s => {
+
+					const sect = piece[ s ];
+
+					if ( sect && sect.DataArray ) {
+
+						const arr = Array.isArray( sect.DataArray ) ? sect.DataArray : [ sect.DataArray ];
+
+						return arr.map( a => a.attributes.offset );
+
+					}
+
+					return [];
+
+				} ).flat();
+
+				for ( const sect of sections ) {
+
+					const section = piece[ sect ];
+
+					if ( section && section.DataArray ) {
+
+						if ( Array.isArray( section.DataArray ) ) {
+
+							for ( const sectionEle of section.DataArray ) {
+
+								sectionEle[ '#text' ] = appendedData.slice( offsets[ sectionIndex ], offsets[ sectionIndex + 1 ] );
+								sectionEle.attributes.format = 'binary';
+								sectionIndex ++;
+
+							}
+
+						} else {
+
+							section.DataArray[ '#text' ] = appendedData.slice( offsets[ sectionIndex ], offsets[ sectionIndex + 1 ] );
+							section.DataArray.attributes.format = 'binary';
+							sectionIndex ++;
+
+						}
+
+					}
+
+				}
+
+			}
 
 			if ( json.PolyData ) {
 
